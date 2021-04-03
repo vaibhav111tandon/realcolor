@@ -7,6 +7,16 @@ function App() {
   const canvasRef = useRef(null);
   const { innerWidth: width, innerHeight: height } = window;
   const [front, setFront] = useState(false);
+  const [desktopMode, setDesktopMode] = useState(false);
+
+  useEffect(() => {
+    let isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
+    setDesktopMode(!isMobile);
+    return () => {
+      
+    }
+  }, [desktopMode])
+
   useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({
@@ -44,7 +54,7 @@ function App() {
   }
   return (
     <div className="App">
-      <button
+      {desktopMode?'':(<button
         style={{
           position: "absolute",
           top: "30px",
@@ -62,7 +72,7 @@ function App() {
         onClick={() => (front ? setFront(false) : setFront(true))}
       >
         Flip
-      </button>
+      </button>)}
       <video
         width={width}
         height={height}
