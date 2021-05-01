@@ -69,7 +69,7 @@ function App() {
           borderRadius: "5px",
           padding: "10px 20px 40px 20px"
         }}
-        onClick={() => (front ? setFront(false) : setFront(true))}
+        onClick={() => setFront(!front)}
       >
         Flip
       </button>)}
